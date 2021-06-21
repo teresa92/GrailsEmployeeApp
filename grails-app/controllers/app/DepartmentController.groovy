@@ -4,10 +4,60 @@ class DepartmentController {
     def DepartmentService
 
     def index() {
-        println(params)
         def department = DepartmentService.getAllDepartment()
+        if (department == []) {
+            flash.error = "Κάτι πήγε στραβά"
+        } else {
+            ['Department': department]
+        }
+    }
 
-        ['Department': department]
+
+
+    def addDepartment() {
+
+    }
+
+    def create() {
+        def addEmployee = DepartmentService.createDepartment(params.DepartmentName)
+        if (addEmployee == []) {
+            flash.error = "Αυτό το τμήμα υπάρχει ήδη. Παρακαλώ εισάγετε ένα καινούργιο τμήμα"
+            redirect(action: "addDepartment")
+        }
+        else{
+            redirect(action: "index")
+        }
+    }
+
+    def delete() {
+        def deleteADepartment = DepartmentService.deleteDepartment(params.id)
+        if (deleteADepartment == []) {
+            flash.error = "Κάτι πήγε στραβά"
+            redirect(controller:"department", action: "index")
+        } else {
+            redirect(controller:"department", action: "index")
+        }
+    }
+
+
+    def edit() {
+        def departmentById = DepartmentService.getDepartmentById(params.id)
+        if (departmentById == null) {
+            flash.error = "Κάτι πήγε στραβά"
+        } else {
+            ['departmentById': departmentById]
+        }
+
+    }
+
+    def update() {
+        def updateADepartment = departmentService.updateDepartment(params.id, params.DepartmentName)
+        if (updateADepartment == 0) {
+            flash.error = "Κάτι έκανες λάθος"
+            redirect(action: "edit", id: params.id)
+        } else {
+            redirect(action: "index")
+        }
 
     }
 }

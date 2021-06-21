@@ -9,58 +9,72 @@
 <html>
 <head>
     <title></title>
+    <asset:javascript src="jquery-3.3.1.min.js"/>
+    <asset:javascript src="popper.min.js"/>
+    <asset:javascript src="bootstrap.min.js"/>
     <asset:stylesheet src="bootstrap.min.css"/>
+    <asset:stylesheet src="style.css"/>
 </head>
 
 <body>
-<table class="table">
-    <thead>
-    <tr>
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top" id="sideNav">
+    <span class="d-none d-lg-block navbar-brand js-scroll-trigger">
+        <g:img class="img-fluid img-profile rounded-circle mx-auto mb-2" dir="images" file="knowledge.png"
+               alt="knowledge-icon"/>
+    </span>
 
-        <th scope="col">id</th>
-        <th scope="col">last name</th>
-        <th scope="col">first name </th>
-        <th scope="col">is active</th>
-        <th scope="col">date of birth </th>
-        <th scope="col">actions</th>
-    </tr>
-    </thead>
-    <tbody>
-    <g:each in="${Employee}">
-        <tr>
+    <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav">
+            <li class="nav-item"><a class="nav-link js-scroll-trigger" href="/">Εργαζόμενοι</a></li>
+            <li class="nav-item"><a class="nav-link js-scroll-trigger" href="/employee/add">Εισαγωγή εργαζομένου</a></li>
+            <li class="nav-item"><a class="nav-link js-scroll-trigger" href="/department">Τμήματα</a></li>
+            <li class="nav-item"><a class="nav-link js-scroll-trigger" href="/department/add">Εισαγωγή τμήματος</a></li>
+        </ul>
+    </div>
+</nav>
 
-            <td>${it.employee_id}</td>
-            <td>${it.last_name}</td>
-            <td>${it.first_name}</td>
-            <td>${it.is_active}</td>
-            <td>${it.date_of_birth}</td>
-            <td><g:link controller="employee" action="delete" id="${it.employee_id}">
-                <button type="button" class="btn btn-danger">delete</button>
-            </g:link> </td>
+<div class="container-fluid p-0">
+    <section class="resume-section">
+        <div class="resume-section-content">
+            <h3 class="resume-section-content">Πινακας εργαζομένων</h3>
+            <g:if test="${flash.error}">
+                <div class="alert alert-danger" role="alert">
+                    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                    ${flash.error}
+                </div>
+            </g:if>
 
-        </tr>
-    </g:each>
-    <form>
-        <div class="form-group">
-            <label for="exampleInputEmail1">last name</label>
-            <input type="text" name="lastName" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter last name">
+            <table class="table">
+                <thead>
+                <tr>
+                    <th scope="col">Επώνυμο</th>
+                    <th scope="col">Όνομα</th>
+                    <th scope="col">Ημερομηνία γέννησης</th>
+                    <th scope="col">Τμήμα</th>
+                    <th scope="col">Ενέργειες</th>
+                </tr>
+                </thead>
+                <tbody>
+                <g:each in="${Employee}">
+                    <tr>
+
+                        <td>${it.last_name}</td>
+                        <td>${it.first_name}</td>
+                        <td>${it.date_of_birth}</td>
+                        <td>${it.department_name}</td>
+                        <td><g:link class="btn btn-success" controller="employee" action="editEmployee" id="${it.employee_id}">
+                            Επεξεργασία
+                        </g:link>
+                        <g:link class="btn btn-danger" controller="employee" action="delete" onclick="return confirm('Ειστε σίγουρος οτι θέλετε να διαγράψετε τον εργαζόμενο?')" id="${it.employee_id}">
+                            Διαγραφή
+                        </g:link>
+                        </td>
+                    </tr>
+                </g:each>
+                </tbody>
+            </table>
         </div>
-        <div class="form-group">
-            <label for="exampleInputPassword1">first name</label>
-            <input type="text" name="firstName" class="form-control" id="exampleInputPassword1" placeholder="enter first name">
-        </div>
-        <div class="form-check">
-            <input type="checkbox" name="isActive" class="form-check-input" id="exampleCheck1">
-            <label class="form-check-label" for="exampleCheck1">is active</label>
-            <div class="form-group">
-                <label for="exampleInputPassword1">date of birth</label>
-                <input type="date" name="dateOFBirth" class="form-control" id="exampleInputPassword1" placeholder="enter date of birth">
-            </div>
-
-            <g:actionSubmit value="SUBMIT" action="insertE" />
-    </form>
-
-    </tbody>
-</table>
+    </section>
+</div>
 </body>
 </html>

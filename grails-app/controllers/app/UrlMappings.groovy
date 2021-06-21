@@ -9,7 +9,10 @@ class UrlMappings {
             }
         }
 
-        "/"(view:"/index")
+        "/"(controller: "employee" ,action: "index")
+        "/department"(controller : "department", action: "index")
+        "/employee/add"(controller: "employee", action: "addEmployee")
+        "/department/add"(controller: "department",action: "addDepartment")
         "500"(view:'/error')
         "404"(view:'/notFound')
     }
