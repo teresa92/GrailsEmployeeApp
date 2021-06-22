@@ -45,13 +45,13 @@
     <div class="form-group">
         <label for="exampleInputEmail1">Επώνυμο</label>
         <input type="text" name="lastName" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
-               placeholder="Εισάγετε επώνυμο" pattern="^[α-ωΑ-Ωa-zA-Z]+$" required>
+               placeholder="Εισάγετε επώνυμο" pattern="^[α-ωΑ-Ωά-ώa-zA-Z]+$" required>
     </div>
 
     <div class="form-group">
         <label for="exampleInputPassword1">Όνομα</label>
-        <input type="text" name="Όνομα" class="form-control" id="exampleInputPassword1"
-               placeholder="Εισάγετε όνομα" pattern="^[α-ωΑ-Ωa-zA-Z]+$" required>
+        <input type="text" name="firstName" class="form-control" id="exampleInputPassword1"
+               placeholder="Εισάγετε όνομα" pattern="^[α-ωΑ-Ωά-ώa-zA-Z]+$" required>
     </div>
 
         <div class="form-group">

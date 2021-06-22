@@ -51,7 +51,7 @@
                     <label for="exampleInputEmail1">Όνομα τμήματος</label>
                     <input type="text" name="DepartmentName" class="form-control" id="exampleInputEmail1"
                            aria-describedby="emailHelp"
-                           pattern="^[α-ωΑ-Ωa-zA-Z]+$"
+                           pattern="^[α-ωΑ-Ωά-ώa-zA-Z]+$"
                            placeholder="Εισάγετε όνομα">
                 </div>
                 <g:actionSubmit class="btn btn-primary btn-lg btn-block" value="Δημιουργία" action="create"/>

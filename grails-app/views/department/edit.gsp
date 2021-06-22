@@ -48,7 +48,7 @@
                 <div class="form-group">
                     <label for="exampleInputEmail1">Όνομα τμήματος</label>
                     <input type="text" name="DepartmentName" class="form-control" id="exampleInputEmail1"
-                           aria-describedby="emailHelp" pattern="^[α-ωΑ-Ωa-zA-Z]+$"
+                           aria-describedby="emailHelp" pattern="^[α-ωΑ-Ωά-ώa-zA-Z]+$"
                            value="${departmentById.department_name}" required>
                 </div>
                 <g:actionSubmit class="btn btn-primary btn-lg btn-block" value="Αποθήκευση" controller="department" action="update"/>

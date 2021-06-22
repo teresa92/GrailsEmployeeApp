@@ -51,13 +51,13 @@
                     <label for="exampleInputEmail1">Επώνυμο</label>
                     <input type="text" name="lastName" class="form-control" id="exampleInputEmail1"
                            aria-describedby="emailHelp"
-                           value=${employeeById.last_name}  pattern="^[α-ωΑ-Ωa-zA-Z]+$" required>
+                           value=${employeeById.last_name}  pattern="^[α-ωΑ-Ωά-ώa-zA-Z]+$" required>
                 </div>
 
                 <div class="form-group">
                     <label for="exampleInputEmail2">Όνομα</label>
                     <input type="text" name="firstName" class="form-control" id="exampleInputEmail2"
-                           value=${employeeById.first_name} pattern="^[α-ωΑ-Ωa-zA-Z]+$" required>
+                           value=${employeeById.first_name} pattern="^[α-ωΑ-Ωά-ώa-zA-Z]+$" required>
                 </div>
 
                 <div class="form-group">

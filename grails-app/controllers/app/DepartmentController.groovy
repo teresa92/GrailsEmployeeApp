@@ -7,12 +7,11 @@ class DepartmentController {
         def department = DepartmentService.getAllDepartment()
         if (department == []) {
             flash.error = "Κάτι πήγε στραβά"
+            ['Department': department]
         } else {
             ['Department': department]
         }
     }
-
-
 
     def addDepartment() {
 
@@ -32,7 +31,7 @@ class DepartmentController {
     def delete() {
         def deleteADepartment = DepartmentService.deleteDepartment(params.id)
         if (deleteADepartment == []) {
-            flash.error = "Κάτι πήγε στραβά"
+            flash.error = "Το τμήμα δεν μπορει να διαγραφεί γιατι έχει εργαζομένους"
             redirect(controller:"department", action: "index")
         } else {
             redirect(controller:"department", action: "index")
@@ -43,7 +42,8 @@ class DepartmentController {
     def edit() {
         def departmentById = DepartmentService.getDepartmentById(params.id)
         if (departmentById == null) {
-            flash.error = "Κάτι πήγε στραβά"
+            flash.error = "Το τμήμα δεν υπάρχει. Παρακαλώ εισάγετε νέο τμήμα"
+            redirect(action:"addDepartment")
         } else {
             ['departmentById': departmentById]
         }
@@ -53,7 +53,7 @@ class DepartmentController {
     def update() {
         def updateADepartment = departmentService.updateDepartment(params.id, params.DepartmentName)
         if (updateADepartment == 0) {
-            flash.error = "Κάτι έκανες λάθος"
+            flash.error = "Το τμήμα υπάρχει ήδη."
             redirect(action: "edit", id: params.id)
         } else {
             redirect(action: "index")

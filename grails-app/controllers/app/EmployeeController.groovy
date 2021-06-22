@@ -7,7 +7,8 @@ class EmployeeController {
     def index() {
         def employee = EmployeeService.getAllEmployee()
         if (employee == []) {
-            flash.error = "Κάτι πήγε στραβά"
+            flash.error = "Δεν υπάρχουν εργάζομενοι"
+            ['Employee': employee]
         } else {
             ['Employee': employee]
         }
@@ -16,7 +17,8 @@ class EmployeeController {
     def addEmployee() {
         def department = DepartmentService.getAllDepartment()
         if (department == []) {
-            flash.error
+            flash.error = "Κάτι εκανες λαθος"
+            ['department': department]
         } else {
             ['department': department]
         }
@@ -37,8 +39,8 @@ class EmployeeController {
         def employeeById = EmployeeService.getEmployeeById(params.id)
         def departments = DepartmentService.getAllDepartment()
         if (employeeById == null) {
-            flash.error = "Κάτι έκανες λάθος"
-            redirect(action:"editEmployee")
+            flash.error = "Ο εργαζόμενος που εισάγατε δεν υπάρχει. Παρακαλώ εισάγετε τα στοιχεία του εργαζομένου"
+            redirect(action:"addEmployee")
         } else {
             ['employeeById': employeeById, 'department': departments]
 
