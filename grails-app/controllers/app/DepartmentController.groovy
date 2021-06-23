@@ -2,20 +2,18 @@ package app
 
 class DepartmentController {
     def DepartmentService
-
     def index() {
-        def department = DepartmentService.getAllDepartment()
+        def pageDepartment = DepartmentService.getPageOfDepartment()
+        def department = DepartmentService.getAllDepartment(params.max,params.offset)
         if (department == []) {
             flash.error = "Κάτι πήγε στραβά"
-            ['Department': department]
+            ['Department': department,'pageDEpartment':pageDepartment]
         } else {
-            ['Department': department]
+            ['Department': department,'pageDEpartment':pageDepartment.count]
         }
     }
 
-    def addDepartment() {
-
-    }
+    def addDepartment() {}
 
     def create() {
         def addEmployee = DepartmentService.createDepartment(params.DepartmentName)
@@ -24,7 +22,7 @@ class DepartmentController {
             redirect(action: "addDepartment")
         }
         else{
-            redirect(action: "index")
+            redirect(action: "index",params: [offset:0,max:5])
         }
     }
 
@@ -34,7 +32,7 @@ class DepartmentController {
             flash.error = "Το τμήμα δεν μπορει να διαγραφεί γιατι έχει εργαζομένους"
             redirect(controller:"department", action: "index")
         } else {
-            redirect(controller:"department", action: "index")
+            redirect(controller:"department", action: "index",params: [offset:0,max:5])
         }
     }
 
@@ -56,7 +54,7 @@ class DepartmentController {
             flash.error = "Το τμήμα υπάρχει ήδη."
             redirect(action: "edit", id: params.id)
         } else {
-            redirect(action: "index")
+            redirect(action: "index", params: [offset:0,max:5])
         }
 
     }

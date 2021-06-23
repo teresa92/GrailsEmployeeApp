@@ -5,7 +5,7 @@ class EmployeeController {
     def DepartmentService
 
     def index() {
-        def employee = EmployeeService.getAllEmployee()
+        def employee = EmployeeService.getAllEmployee( )
         if (employee == []) {
             flash.error = "Δεν υπάρχουν εργάζομενοι"
             ['Employee': employee]

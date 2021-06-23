@@ -26,8 +26,10 @@
     <div class="collapse navbar-collapse" id="navbarResponsive">
         <ul class="navbar-nav">
             <li class="nav-item"><a class="nav-link js-scroll-trigger" href="/">Εργαζόμενοι</a></li>
-            <li class="nav-item"><a class="nav-link js-scroll-trigger" href="/employee/add">Εισαγωγή εργαζομένου</a></li>
-            <li class="nav-item"><a class="nav-link js-scroll-trigger" href="/department">Τμήματα</a></li>
+            <li class="nav-item"><a class="nav-link js-scroll-trigger" href="/employee/add">Εισαγωγή εργαζομένου</a>
+            </li>
+            <li class="nav-item"><g:link controller="department" action="index" params="[offset: 0, max: 5]"
+                                         class="nav-link js-scroll-trigger">Τμήματα</g:link></li>
             <li class="nav-item"><a class="nav-link js-scroll-trigger" href="/department/add">Εισαγωγή τμήματος</a></li>
         </ul>
     </div>
@@ -62,10 +64,13 @@
                         <td>${it.first_name}</td>
                         <td>${it.date_of_birth}</td>
                         <td>${it.department_name}</td>
-                        <td><g:link class="btn btn-success" controller="employee" action="editEmployee" id="${it.employee_id}">
+                        <td><g:link class="btn btn-success" controller="employee" action="editEmployee"
+                                    id="${it.employee_id}">
                             Επεξεργασία
                         </g:link>
-                        <g:link class="btn btn-danger" controller="employee" action="delete" onclick="return confirm('Ειστε σίγουρος οτι θέλετε να διαγράψετε τον εργαζόμενο?')" id="${it.employee_id}">
+                        <g:link class="btn btn-danger" controller="employee" action="delete"
+                                onclick="return confirm('Ειστε σίγουρος οτι θέλετε να διαγράψετε τον εργαζόμενο?')"
+                                id="${it.employee_id}">
                             Διαγραφή
                         </g:link>
                         </td>
@@ -73,6 +78,10 @@
                 </g:each>
                 </tbody>
             </table>
+
+            <div aria-label="Page navigation example">
+                <g:paginate controller="employee" action="index" total="${pageDEpartment}"/>
+            </div>
         </div>
     </section>
 </div>
