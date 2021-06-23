@@ -7,12 +7,23 @@ import groovy.sql.Sql
 class EmployeeService {
     def dataSource
 
-    def getAllEmployee() {
+    def getAllEmployee(def max, def offset) {
         Sql sql = new Sql(dataSource)
         try {
             return sql.rows("""SELECT *, to_char(date_of_birth, 'DD-MM-YYYY') as date_of_birth
-                            FROM employee,department WHERE department.department_id=employee.department_id AND is_active=true""")
-        }catch(Exception e){
+                            FROM employee ,department
+                                WHERE department.department_id=employee.department_id AND is_active=true LIMIT '${max}' offset '${offset}' """)
+        } catch (Exception e) {
+            e.printStackTrace()
+            return []
+        }
+    }
+
+    def getPageOFEmployee() {
+        Sql sql = new Sql(dataSource)
+        try {
+            return sql.firstRow(""" SELECT COUNT (DISTINCT (employee_id)) as count FROM employee WHERE is_active=true """)
+        } catch (Exception e) {
             e.printStackTrace()
             return []
         }
@@ -22,9 +33,20 @@ class EmployeeService {
         Sql sql = new Sql(dataSource)
         try {
             return sql.firstRow(" SELECT * FROM employee, department WHERE employee_id='${id}'AND department.department_id=employee.department_id")
-        }catch(Exception e){
+        } catch (Exception e) {
             e.printStackTrace()
             return null
+        }
+    }
+    def getAllDepartmentForEmployee(){
+        Sql sql=new Sql(dataSource)
+        try{
+            return sql.rows('SELECT * FROM department')
+        }catch(Exception e){
+            e.printStackTrace()
+
+            return []
+
         }
     }
 
@@ -46,7 +68,7 @@ class EmployeeService {
         try {
             return sql.execute(""" DELETE FROM employee WHERE employee_id='${id}'""")
         }
-        catch (Exception e){
+        catch (Exception e) {
             e.printStackTrace()
 
             return []
@@ -66,6 +88,7 @@ class EmployeeService {
 
         }
     }
+
 }
 
 

@@ -2,20 +2,21 @@ package app
 
 class EmployeeController {
     def EmployeeService
-    def DepartmentService
+
 
     def index() {
-        def employee = EmployeeService.getAllEmployee( )
+        def pageEmployee = EmployeeService.getPageOFEmployee()
+        def employee = EmployeeService.getAllEmployee(params.max,params.offset)
         if (employee == []) {
             flash.error = "Δεν υπάρχουν εργάζομενοι"
-            ['Employee': employee]
+            ['Employee': employee,'pageEmployee':pageEmployee]
         } else {
-            ['Employee': employee]
+            ['Employee': employee,'pageEmployee':pageEmployee.count]
         }
     }
 
     def addEmployee() {
-        def department = DepartmentService.getAllDepartment()
+        def department = EmployeeService.getAllDepartmentForEmployee()
         if (department == []) {
             flash.error = "Κάτι εκανες λαθος"
             ['department': department]
@@ -30,17 +31,17 @@ class EmployeeController {
             flash.error = "Κάτι έκανες λάθος"
             redirect(action: "addEmployee")
         } else {
-            redirect(action: "index")
+            redirect(action: "index" ,params: [offset:0,max:5])
         }
     }
 
 
     def editEmployee() {
         def employeeById = EmployeeService.getEmployeeById(params.id)
-        def departments = DepartmentService.getAllDepartment()
+        def departments = EmployeeService.getAllDepartmentForEmployee()
         if (employeeById == null) {
             flash.error = "Ο εργαζόμενος που εισάγατε δεν υπάρχει. Παρακαλώ εισάγετε τα στοιχεία του εργαζομένου"
-            redirect(action:"addEmployee")
+            redirect(action:"addEmployee" )
         } else {
             ['employeeById': employeeById, 'department': departments]
 
@@ -54,7 +55,7 @@ class EmployeeController {
             flash.error = "Κάτι έκανες λάθος"
             redirect(action: "edit", id: params.id)
         } else {
-            redirect(action: "index")
+            redirect(action: "index",params: [offset:0,max:5])
         }
     }
 
@@ -64,7 +65,7 @@ class EmployeeController {
             flash.error = "Κάτι πήγε στραβά"
             redirect(action: "index")
         } else {
-            redirect(action: "index")
+            redirect(action: "index",params: [offset:0,max:5])
         }
     }
 }

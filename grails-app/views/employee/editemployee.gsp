@@ -27,7 +27,8 @@
 
     <div class="collapse navbar-collapse" id="navbarResponsive">
         <ul class="navbar-nav">
-            <li class="nav-item"><a class="nav-link js-scroll-trigger" href="/">Εργαζόμενοι</a></li>
+            <li class="nav-item"><g:link controller="employee" action="index" params="[offset: 0, max: 5]"
+                                         class="nav-link js-scroll-trigger">Εργαζόμενοι</g:link></li>
             <li class="nav-item"><a class="nav-link js-scroll-trigger" href="/employee/add">Εισαγωγή εργαζομένου</a>
             </li>
             <li class="nav-item"><g:link controller="department" action="index" params="[offset:0,max:5]" class="nav-link js-scroll-trigger" >Τμήματα</g:link></li>
