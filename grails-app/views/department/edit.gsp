@@ -58,8 +58,8 @@
             </g:if>
             <form method="post">
                 <div class="form-group">
-                    <label for="exampleInputEmail1">Όνομα τμήματος</label>
-                    <input type="text" name="DepartmentName" class="form-control" id="exampleInputEmail1"
+                    <label for="DepartmentName">Όνομα τμήματος</label>
+                    <input type="text" name="DepartmentName" class="form-control" id="DepartmentName"
                            aria-describedby="emailHelp" pattern="^[α-ωΑ-Ωά-ώa-zA-Z]+$"
                            value="${departmentById.department_name}" required>
                 </div>

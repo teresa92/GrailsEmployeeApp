@@ -32,7 +32,7 @@ class EmployeeService {
     def getEmployeeById(def id) {
         Sql sql = new Sql(dataSource)
         try {
-            return sql.firstRow(" SELECT * FROM employee, department WHERE employee_id='${id}'AND department.department_id=employee.department_id")
+            return sql.firstRow(" SELECT *, to_char(date_of_birth, 'DD-MM-YYYY') as date_of_birth FROM employee, department WHERE employee_id='${id}'AND department.department_id=employee.department_id")
         } catch (Exception e) {
             e.printStackTrace()
             return null
