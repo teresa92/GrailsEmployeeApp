@@ -8,9 +8,14 @@ class SignUpService {
 
     def dataSource
 
-    def CreateUser(def users_name, def users_pasword) {
+    def CreateUser(def users_name, def users_password) {
         Sql sql = new Sql(dataSource)
-        return sql.executeInsert ("""insert into users(users_name, users_password) values(${users_name},${users_password})""")
+        try {
+            return sql.executeInsert("""insert into users(users_name, users_password) values(${users_name},${users_password})""")
+        }catch(Exception e){
+
+            return []
+        }
     }
 
 }

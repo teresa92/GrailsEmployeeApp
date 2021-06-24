@@ -27,11 +27,16 @@
 
     </div>
 </nav>
-
+    <g:if test="${flash.error}">
+        <div class="alert alert-danger" role="alert">
+            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+            ${flash.error}
+        </div>
+    </g:if>
 <div class="container-fluid p-0">
     <section class="resume-section">
         <div class="resume-section-content">
-            <form>
+            <form method="post">
 
                 <div class="form-group">
                     <label for="exampleInputEmail1">Όνομα χρήστη</label>
@@ -42,13 +47,13 @@
 
                 <div class="form-group">
                     <label for="exampleInputPassword1">Κωδικός</label>
-                    <input type="text" name="pasword" class="form-control" id="exampleInputPassword1"
+                    <input type="password" name="password" class="form-control" id="exampleInputPassword1"
                            placeholder="Εισάγετε κωδικό" required>
                 </div>
 
 
 
-                <g:actionSubmit class="btn btn-primary btn-lg btn-block" value="Δημιουρία" action="goToLogin"/>
+                <g:actionSubmit class="btn btn-primary btn-lg btn-block" value="Δημιουρία" action="addUser"/>
             </form>
         </div>
     </section>

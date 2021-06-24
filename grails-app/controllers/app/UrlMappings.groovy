@@ -10,6 +10,7 @@ class UrlMappings {
         }
 
         "/"(controller: "login",action: "index")
+        "/signUp"(controller:"signUp",action:"index")
         "/employee"(controller: "employee" ,action: "index")
         "/department"(controller : "department", action: "index")
         "/employee/add"(controller: "employee", action: "addEmployee")
