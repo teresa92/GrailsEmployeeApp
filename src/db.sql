@@ -18,6 +18,7 @@ CREATE TABLE employee(
                          department_id BIGINT REFERENCES department(department_id)
 );
 
+
 insert into department (department_name) values ('Nlounge');
 insert into department (department_name) values ('Skynoodle');
 insert into department (department_name) values ('Trunyx');
