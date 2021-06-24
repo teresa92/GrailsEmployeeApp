@@ -1,12 +1,12 @@
 CREATE TABLE users(
-                         users_id BIGSERIAL PRIMARY KEY,
-                         users_name VARCHAR(50) NOT null,
-                         users_password VARCHAR(50) NOT null
+                      users_id BIGSERIAL PRIMARY KEY,
+                      users_name VARCHAR(50) NOT null,
+                      users_password VARCHAR(50) NOT null
 );
 CREATE TABLE department(
-                            department_id BIGSERIAL PRIMARY KEY ,
-                            department_name VARCHAR(50) NOT null,
-                            CONSTRAINT department_name UNIQUE (department_name)
+                           department_id BIGSERIAL PRIMARY KEY ,
+                           department_name VARCHAR(50) NOT null,
+                           CONSTRAINT department_name UNIQUE (department_name)
 );
 
 CREATE TABLE employee(
@@ -16,16 +16,39 @@ CREATE TABLE employee(
                          is_active BOOLEAN NOT NULL,
                          date_of_birth DATE NOT NULL,
                          department_id BIGINT REFERENCES department(department_id)
-                             CONSTRAINT afm UNIQUE (afm)
 );
 
-
-
-
-
-
-
-
+insert into department (department_name) values ('Nlounge');
+insert into department (department_name) values ('Skynoodle');
+insert into department (department_name) values ('Trunyx');
+insert into department (department_name) values ('Centizu');
+insert into department (department_name) values ('Tagfeed');
+insert into department (department_name) values ('Linklinks');
+insert into department (department_name) values ('Ntag');
+insert into department (department_name) values ('Jaxspan');
+insert into department (department_name) values ('Meevee');
+insert into department (department_name) values ('Jaxworks');
+insert into department (department_name) values ('Feedspan');
+insert into department (department_name) values ('Kazio');
+insert into department (department_name) values ('Roombo');
+insert into department (department_name) values ('Aivee');
+insert into department (department_name) values ('Topicware');
+insert into department (department_name) values ('Cogibox');
+insert into department (department_name) values ('Yombu');
+insert into department (department_name) values ('Demivee');
+insert into department (department_name) values ('Omba');
+insert into department (department_name) values ('Roomm');
+insert into department (department_name) values ('Twiyo');
+insert into department (department_name) values ('Jabberstorm');
+insert into department (department_name) values ('Skipfire');
+insert into department (department_name) values ('Leenti');
+insert into department (department_name) values ('Buzzshare');
+insert into department (department_name) values ('Bubblebox');
+insert into department (department_name) values ('Meemm');
+insert into department (department_name) values ('Wikivu');
+insert into department (department_name) values ('Jabbersphere');
+insert into department (department_name) values ('Rhynoodle');
+insert into department (department_name) values ('Realbuzz');
 
 INSERT INTO "employee" (last_name,first_name,is_active,date_of_birth,department_id) VALUES ('Rhonda','Hanna','True','22/05/2021',31);
 INSERT INTO "employee" (last_name,first_name,is_active,date_of_birth,department_id) VALUES ('Erin','Chava','True','21/08/2020',31);
